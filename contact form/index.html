@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Form</title>
+    <script type="text/javascript"
+        src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js">
+    </script>
+    <script type="text/javascript">
+    (function(){
+        emailjs.init({
+            publicKey: "EHLu7XMKmQx_Pc75D",
+        });
+    })();
+    </script>
+</head>
+
+
+<style>
+ body{
+    font-family: Arial, Helvetica, sans-serif;
+    padding-top: 150px;
+    background-color: black;
+    padding-left: 700px;
+    padding-right: 700px;
+ }
+ .topcontainer{
+    display: flex;
+    justify-content: center;
+    padding-left: 20px;
+    padding-right: 20px;
+    background-color: rgb(228, 161, 37);
+ }
+   .maincontainer{
+    align-items: center;
+    font-weight: 600;
+    text-align: right;
+    padding-top: 30px;
+   }
+   button{
+    padding: 10px 10px;
+    margin-right: 60px;
+   }
+   .maincontainer button:hover{
+    background-color: azure;
+    color: black;
+   }
+h1{
+    font-size: 50px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: 900;
+    color: white;
+    text-align: center;
+
+}
+</style>
+<body>
+   <h1>Contact Form</h1>
+    <div class="topcontainer">
+    <div class="maincontainer">
+    <label for="userName">
+        Full Name: <input type="text" id="userName">
+    </label>
+    <br><br>
+    <label for="email">
+        Email: <input type="text" id="email">
+    </label>
+    <br><br>
+    <label for="subject">
+        Subject: <input type="text" id="subject">
+    </label>
+    <br><br>
+    <label for="message">
+        Message: <textarea name="" id="message"></textarea>
+    </label>
+    <br><br>
+    <button onclick="submit()">Submit</button>
+</div></div>
+    <!-- Allow "Send email on your behalf" permission during connection. Both Gmail and Google Apps accounts are supported. -->
+
+    <script>
+        function submit(){
+            let userName = document.getElementById("userName").value;
+            let userEmail = document.getElementById("email").value;
+            let subject = document.getElementById("subject").value;
+            let userMessage = document.getElementById("message").value;
+
+            let params = {
+                user_name: userName,
+                email: userEmail,
+                subject: subject,
+                message: userMessage
+            }
+            ///             Service ID      Template ID        Object
+            emailjs.send("service_dwz9fjf", "template_n1uq1md", params)
+            .then((res) => {
+                alert("Query Sent")
+                console.log(res)
+            })
+            .catch((err) => {
+                console.log(err)
+            })
+        }
+    </script>
+</body>
+</html>
